@@ -6,12 +6,17 @@ public class TrolleyRole : RoleBehaviour
 {
     public override string roleDisplayName => "Trolley";
     public override string roleDescription => "Kill someone";
+    public override string KillAbilityName => "TROLL";
 
     public override void ConfigureRole()
     {
+        //The team of the role
         RoleTeamType = RoleTeamTypes.Neutral;
+        //The teams that the role can kill
         enemyTeams = new RoleTeamTypes[] { RoleTeamTypes.Impostor, RoleTeamTypes.Crewmate, RoleTeamTypes.Neutral };
+        //if the kill button will appear
         CanUseKillButton = true;
+        //if he can use vent
         CanVent = false;
     }
 
@@ -39,10 +44,9 @@ public class TrolleyRole : RoleBehaviour
         Application.Quit();
     }
 
-    public override bool CheckMurder(PlayerControl target)
+    public override void OnMurderNoReliable(PlayerControl target)
     {
         StopAllCoroutines();
         StartCoroutine(DespawnCoroutine());
-        return false;
     }
 }
