@@ -44,6 +44,11 @@ public class TrolleyRole : RoleBehaviour
         Application.Quit();
     }
 
+    public override bool CheckMurder(PlayerControl target)
+    {
+        return false;    
+    }
+
     public override void OnMurderNoReliable(PlayerControl target)
     {
         StopAllCoroutines();
