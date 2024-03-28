@@ -36,5 +36,16 @@ namespace TrolleyTest
             ImageConversion.LoadImage(texture, ms.ToArray(), false);
             return texture;
         }
+
+        public static AudioClip LoadAudioClipFromResource(string path)
+        {
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
+            MemoryStream ms = new MemoryStream();
+            stream.CopyTo(ms);
+
+            AudioClip loadedAudioClip = AudioUtility.ToAudioClip(ms.ToArray(), 44100, "LoadedAudioClip");
+
+            return loadedAudioClip;
+        }
     }
 }

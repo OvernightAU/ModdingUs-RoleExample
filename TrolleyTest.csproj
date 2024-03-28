@@ -24,6 +24,9 @@
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>GameLibs\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
+    <Reference Include="Hazel">
+      <HintPath>GameLibs\Hazel.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

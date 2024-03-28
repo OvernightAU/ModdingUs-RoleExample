@@ -1,13 +1,22 @@
 ﻿using Kino;
 using System.Collections;
+using TrolleyTest;
 using UnityEngine;
+using Hazel;
 using UnityObject = UnityEngine.Object;
+using System;
 
 public class TrolleyRole : RoleBehaviour
 {
     public override string roleDisplayName => "Trolley";
     public override string roleDescription => "Kill someone";
     public override string KillAbilityName => "TROLL";
+
+    public AudioClip goofyAhdio;
+    public enum RpcCalls
+    {
+        DoTheTrolling = 0,
+    }
 
     public override void ConfigureRole()
     {
@@ -19,6 +28,28 @@ public class TrolleyRole : RoleBehaviour
         CanUseKillButton = true;
         //if he can use vent
         CanVent = false;
+        try
+        {
+            goofyAhdio = Utils.LoadAudioClipFromResource("TrolleyTest.Resources.ohio-goofy-ahh.wav");
+        }
+        catch { }
+    }
+
+    public void RpcTroll()
+    {
+        if (AmongUsClient.Instance.AmHost) //only host should run that actually
+        {
+            Troll();
+        }
+        MessageWriter writer = PlayerControl.LocalPlayer.StartRoleRpc((byte)RpcCalls.DoTheTrolling);
+        AmongUsClient.Instance.FinishRpcImmediately(writer);
+    }
+
+    public void Troll()
+    {
+        StopAllCoroutines();
+        if (DestroyableSingleton<TutorialManager>.InstanceExists) StartCoroutine(DespawnFreeplay());
+        else StartCoroutine(DespawnCoroutine());
     }
 
     public IEnumerator DespawnCoroutine()
@@ -56,6 +87,7 @@ public class TrolleyRole : RoleBehaviour
 
     public IEnumerator DespawnFreeplay()
     {
+        SoundManager.Instance.PlaySound(goofyAhdio, false);
         AnalogGlitch analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
         analogGlitch.enabled = true;
         analogGlitch.scanLineJitter = 0.05f;
@@ -80,20 +112,27 @@ public class TrolleyRole : RoleBehaviour
         yield return new WaitForSeconds(1);
         analogGlitch.colorDrift = 1f;
         yield return HudManager.Instance.CoFadeFullScreen(Color.black, Color.red, 1f);
-        SoundManager.Instance.PlaySoundImmediate(PlayerControl.LocalPlayer.VentScarySound, true, 10f, 5f);
         yield return new WaitForSeconds(2);
         Application.Quit();
     }
 
     public override bool CheckMurder(PlayerControl target)
     {
+        if (DateTime.UtcNow.Subtract(Player.Data.LastMurder.UtcDateTime).TotalSeconds < Player.Data.myRole.KillCooldown - 0.5f)
+        {
+            return false;
+        }
+        RpcTroll();
         return false;    
     }
 
-    public override void OnMurderNoReliable(PlayerControl target)
+    public override void HandleRpc(MessageReader reader, int rpc)
     {
-        StopAllCoroutines();
-        if (DestroyableSingleton<TutorialManager>.InstanceExists) StartCoroutine(DespawnFreeplay());
-        else StartCoroutine(DespawnCoroutine());
+        switch ((RpcCalls)rpc)
+        {
+            case RpcCalls.DoTheTrolling:
+            Troll();
+            break;
+        }
     }
 }
