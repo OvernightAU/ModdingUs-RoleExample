@@ -13,6 +13,9 @@ public class TrolleyRole : RoleBehaviour
     public override string KillAbilityName => "TROLL";
 
     public AudioClip goofyAhdio;
+
+    public bool hacking = false;
+
     public enum RpcCalls
     {
         DoTheTrolling = 0,
@@ -47,6 +50,10 @@ public class TrolleyRole : RoleBehaviour
 
     public void Troll()
     {
+        if (Player.AmOwner)
+        {
+            Player.Data.myRole.SetKillTimer(500f);
+        }
         StopAllCoroutines();
         if (DestroyableSingleton<TutorialManager>.InstanceExists) StartCoroutine(DespawnFreeplay());
         else StartCoroutine(DespawnCoroutine());
@@ -57,6 +64,7 @@ public class TrolleyRole : RoleBehaviour
         AnalogGlitch analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
         analogGlitch.enabled = true;
         analogGlitch.scanLineJitter = 0.05f;
+        hacking = true;
         HudManager.Instance.Notifier.AddItem("<color=white>Pietro: Hey");
         yield return new WaitForSeconds(2);
         HudManager.Instance.Notifier.AddItem("<color=white>Pietro: Would be funny if i destroyed the game.");
@@ -85,10 +93,26 @@ public class TrolleyRole : RoleBehaviour
         Application.Quit();
     }
 
+    public override void OnFixedUpdate()
+    {
+        base.OnFixedUpdate();
+        HudManager.Instance.FullScreen.color = GetRandomColor();
+    }
+
+    public static Color GetRandomColor()
+    {
+        float randomR = UnityEngine.Random.value;
+        float randomG = UnityEngine.Random.value;
+        float randomB = UnityEngine.Random.value;
+
+        return new Color(randomR, randomG, randomB);
+    }
+
     public IEnumerator DespawnFreeplay()
     {
         SoundManager.Instance.PlaySound(goofyAhdio, false);
         AnalogGlitch analogGlitch = Camera.main.GetComponent<AnalogGlitch>();
+        hacking = true;
         analogGlitch.enabled = true;
         analogGlitch.scanLineJitter = 0.05f;
         yield return new WaitForSeconds(5);
