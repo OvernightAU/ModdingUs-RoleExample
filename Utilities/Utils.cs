@@ -37,13 +37,13 @@ namespace TrolleyTest
             return texture;
         }
 
-        public static AudioClip LoadAudioClipFromResource(string path)
+        public static AudioClip LoadAudioClipFromResources(string path, int bytesPerSample)
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
             MemoryStream ms = new MemoryStream();
             stream.CopyTo(ms);
 
-            AudioClip loadedAudioClip = AudioUtility.ToAudioClip(ms.ToArray(), 44100, "LoadedAudioClip");
+            AudioClip loadedAudioClip = AudioUtility.ToAudioClip(ms.ToArray(), 44100, bytesPerSample, "LoadedAudioClip");
 
             return loadedAudioClip;
         }

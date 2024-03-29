@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿    <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -24,8 +24,20 @@
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>GameLibs\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>GameLibs\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>GameLibs\nityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>GameLibs\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
     <Reference Include="Hazel">
       <HintPath>GameLibs\Hazel.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>GameLibs\Unity.TextMeshPro.dll</HintPath>
     </Reference>
   </ItemGroup>
 

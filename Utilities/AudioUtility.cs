@@ -2,16 +2,15 @@
 
 public static class AudioUtility
 {
-    public static AudioClip ToAudioClip(byte[] audioData, int sampleRate, string name = "AudioClip")
+    public static AudioClip ToAudioClip(byte[] audioData, int sampleRate, int bytesSample, string name = "AudioClip")
     {
-        float[] floatData = ConvertByteArrayToFloatArray(audioData);
+        float[] floatData = ConvertByteArrayToFloatArray(audioData, bytesSample);
         AudioClip audioClip = ToAudioClipInternal(floatData, sampleRate, name);
         return audioClip;
     }
 
-    private static float[] ConvertByteArrayToFloatArray(byte[] audioData)
+    private static float[] ConvertByteArrayToFloatArray(byte[] audioData, int bytesPerSample)
     {
-        int bytesPerSample = 4; // Assuming 32-bit audio
         int floatArrayLength = audioData.Length / bytesPerSample;
         float[] floatData = new float[floatArrayLength];
         for (int i = 0; i < floatArrayLength; i++)
