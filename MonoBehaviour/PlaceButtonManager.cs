@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace TrolleyTest
 {
     public class PlaceButtonManager : AbilityButtonManager
     {
+        public TextMeshPro UseText;
+
         public override string abilityName
         {
             get
