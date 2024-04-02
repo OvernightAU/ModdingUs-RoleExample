@@ -50,12 +50,12 @@ public class BomberRole : RoleBehaviour
         //Add optional sounds (WARNING: Only wav files are supported for now)
         //If your audio is too quick or too slow, try changing the second argument between the numbers:
         //2, 4, 6, 8
-        explosion = Utils.LoadAudioClipFromResources("TrolleyTest.Resources.cola-explosion.wav", 2);
-        earRing = Utils.LoadAudioClipFromResources("TrolleyTest.Resources.ear-ringing.wav", 2);
+        explosion = Utils.LoadAudioClipFromResources("RoleExample.Resources.cola-explosion.wav", 2);
+        earRing = Utils.LoadAudioClipFromResources("RoleExample.Resources.ear-ringing.wav", 2);
 
         //load your sprite
         //change second argument to change image size
-        bomb = Utils.LoadSprite("TrolleyTest.Resources.Dinamite.png", 300f);
+        bomb = Utils.LoadSprite("RoleExample.Resources.Dinamite.png", 300f);
     }
 
     public override void OnFixedUpdate()

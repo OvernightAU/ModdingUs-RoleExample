@@ -11,6 +11,18 @@ namespace TrolleyTest
 
     public static class Utils
     {
+
+        public static void AddHat(string prodId, Sprite MainImage, Sprite FloorImage, bool inFront)
+        {
+            HatBehaviour hat = new HatBehaviour();
+            hat.InFront = inFront;
+            hat.MainImage = MainImage;
+            hat.FloorImage = FloorImage;
+            hat.ProductId = prodId;
+            hat.StoreName = "";
+            HatManager.Instance.AllHats.Add(hat);
+        }
+
         public static Sprite LoadSprite(string path, float pixelsPerUnit = 1f)
         {
             Sprite sprite = null;

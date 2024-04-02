@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TrolleyTest
 {
-    public static class ModMain
+    public class ModMain : ModBehaviour
     {
-        public static string ModName = "Bomber";
-        public static string ModDescription = "<size=90%>A bomber can place bombs in the map.";
-        public static Sprite ModImage; 
+        public override string ModName => "Bomber";
+        public override string ModDescription => "<size=90%>A bomber can place bombs in the map.";
+        public override Sprite ModImage => Utils.LoadSprite("RoleExample.Resources.explode.png", 100f);
 
-        public static void LoadMod()
+        public override void ApplyMod()
         {
-            ModImage = Utils.LoadSprite("TrolleyTest.Resources.explode.png", 100f);
-            if (ModImage == null) Debug.Log("are you serious right now");
+            // Here you load all your mod features (e.g Roles and hats)
+            // You can also use harmony, not recommended but possible
+
             RoleManager.Instance.AddRole<BomberRole>();
             RoleManager.Instance.AddSprite("explodeSprite", ModImage.texture, 720f);
+            Utils.AddHat("bomb", ModImage, ModImage, true);
         }
     }
 }
