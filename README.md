@@ -20,7 +20,7 @@ Getting started is easy:
 
 - **Easy Role Creation**: Create new roles without breaking a sweat.
 - **Customize Your Hats**: Make hats your own with custom features and styles.
-- **Automatic Magic**: The `ApplyMod` function is called automatically after ModsManager.Awake, making your life easier.
+- **Automatic Magic**: The `ApplyMod` function is called automatically in ModsManager.LoadMods, making your life easier.
 - **Do Your Thing**: Whether you're into harmony patching or something else, you've got the freedom to do it your way.
 
 ## Dependencies
