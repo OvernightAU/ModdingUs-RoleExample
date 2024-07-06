@@ -10,9 +10,6 @@ namespace TrolleyTest
 
         public override void ApplyMod()
         {
-            // Here you load all your mod features (e.g Roles and hats)
-            // You can also use harmony, not recommended but possible
-
             RoleManager.Instance.AddRole<BomberRole>();
             RoleManager.Instance.AddSprite("explodeSprite", ModImage.texture, 720f);
             Utils.AddHat("bomb", ModImage, ModImage, true);

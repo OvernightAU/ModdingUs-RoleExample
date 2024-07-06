@@ -9,48 +9,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="Assembly-CSharp">
-			<HintPath>GameLibs\Assembly-CSharp.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="UnityEngine">
-			<HintPath>GameLibs\UnityEngine.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>GameLibs\UnityEngine.CoreModule.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="UnityEngine.AudioModule">
-			<HintPath>GameLibs\UnityEngine.AudioModule.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="UnityEngine.ImageConversionModule">
-			<HintPath>GameLibs\UnityEngine.ImageConversionModule.dll</HintPath>
-			     <Private>false</Private>			
-		</Reference>
-		<Reference Include="UnityEngine.UI">
-			<HintPath>GameLibs\UnityEngine.UI.dll</HintPath>
-			     <Private>false</Private>			
-		</Reference>
-		<Reference Include="UnityEngine.PhysicsModule">
-			<HintPath>GameLibs\nityEngine.PhysicsModule.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="UnityEngine.Physics2DModule">
-			<HintPath>GameLibs\UnityEngine.Physics2DModule.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="Hazel">
-			<HintPath>GameLibs\Hazel.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="Unity.TextMeshPro">
-			<HintPath>GameLibs\Unity.TextMeshPro.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="0Harmony">
-			<HintPath>GameLibs\0Harmony.dll</HintPath>
+		<Reference Include="GameLibs\*.dll">
+			<HintPath>GameLibs\%(FileName)%(Extension)</HintPath>
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
